@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package notice;
+
+// protoc -I. --plugin=protoc-gen-micro=%GOPATH%/bin/protoc-gen-micro-v3.exe --micro_out=./ --go_out=./ ./proto/notice/notice.proto
+option go_package = "./proto/notice";
+
+service NoticeService {
+  rpc Send(SendRequest) returns (SendResponse) {}
+}
+
+message SendRequest {
+  string name = 1;
+}
+
+message SendResponse {
+  string msg = 1;
+}
