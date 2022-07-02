@@ -1,12 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="go build go-micro-jaeger/cmd/notice" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
+  <configuration default="false" name="notice" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
     <module name="go-micro-jaeger" />
     <working_directory value="$PROJECT_DIR$" />
-    <parameters value="-m local" />
-    <kind value="PACKAGE" />
     <package value="go-micro-jaeger/cmd/notice" />
     <directory value="$PROJECT_DIR$" />
-    <filePath value="$PROJECT_DIR$/cmd/hello/app.go" />
-    <method v="2" />
+    <filePath value="$PROJECT_DIR$/cmd/notice/app.go" />
   </configuration>
 </component>
