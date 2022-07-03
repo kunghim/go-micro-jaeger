@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="hello" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
+  <configuration default="false" name="go build go-micro-jaeger/cmd/hello" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
     <module name="go-micro-jaeger" />
     <working_directory value="$PROJECT_DIR$" />
     <package value="go-micro-jaeger/cmd/hello" />
