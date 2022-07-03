@@ -51,3 +51,7 @@ func main() {
 	}
 	log.Println("执行成功 -> ", callResponse.Msg)
 }
+
+func test() {
+	println("hello")
+}
