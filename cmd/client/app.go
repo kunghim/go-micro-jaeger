@@ -43,7 +43,7 @@ func main() {
 	name := "张三"
 	defer span.Finish()
 	span.SetTag("name", name)
-	helloWorldService := hello.NewHelloWorldService(cons.ServerMicroServer, service.Client())
+	helloWorldService := hello.NewHelloWorldService(cons.HelloMicroServer, service.Client())
 	callResponse, err := helloWorldService.Call(ctx, &hello.CallRequest{Name: name})
 	if err != nil {
 		log.Fatal("调用 notice 服务的 send 接口失败 -> ", err)

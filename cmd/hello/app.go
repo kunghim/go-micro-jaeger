@@ -22,7 +22,7 @@ func init() {
 
 func main() {
 	// 创建 tracer
-	trace, err := jaeger.Tracer(cons.ServerTracer, jaegerAgentAddr).Create()
+	trace, err := jaeger.Tracer(cons.HelloTracer, jaegerAgentAddr).Create()
 	if err != nil {
 		log.Fatal("创建 server tracer 失败 -> ", err)
 		return
@@ -33,7 +33,7 @@ func main() {
 	// 创建 micro 服务
 	service := micro.NewService(
 		// 设置 micro 服务名称
-		micro.Name(cons.ServerMicroServer),
+		micro.Name(cons.HelloMicroServer),
 		// 加入 opentracing 的中间件
 		micro.WrapHandler(wrapperTrace.NewHandlerWrapper(trace.Tracer)),
 	)
