@@ -2,44 +2,24 @@ package jaeger
 
 import (
 	"errors"
-	"github.com/asim/go-micro/v3/util/log"
 	"github.com/opentracing/opentracing-go"
 	"github.com/uber/jaeger-client-go"
 	"github.com/uber/jaeger-client-go/config"
+	cons "go-micro-jaeger/constant"
 	"io"
 	"time"
 )
 
-type OpenTrace struct {
-	traceName string
-	agentAddr string
-	Tracer    opentracing.Tracer
-	Closer    io.Closer
-}
-
-func Tracer(traceName, agentAddr string) *OpenTrace {
-	if len(traceName) == 0 || len(agentAddr) == 0 {
-		log.Fatal("traceName 或 agentAddr 不能为空")
-		return nil
+func NewTracer(traceName string) (io.Closer, error) {
+	if len(traceName) == 0 {
+		return nil, errors.New("trace name can not be null")
 	}
-	return &OpenTrace{traceName: traceName, agentAddr: agentAddr}
-}
-
-func (o *OpenTrace) Create() (*OpenTrace, error) {
-	if o == nil {
-		return nil, errors.New("无法连接 jaeger agent")
-	}
-	tracer, closer, err := o.newTracer(o.traceName, o.agentAddr)
-	if err != nil {
-		return nil, err
-	}
+	tracer, closer, err := newTracer(traceName, cons.JaegerAgent)
 	opentracing.SetGlobalTracer(tracer)
-	o.Closer = closer
-	o.Tracer = tracer
-	return o, nil
+	return closer, err
 }
 
-func (o *OpenTrace) newTracer(traceName string, agentAddr string) (opentracing.Tracer, io.Closer, error) {
+func newTracer(traceName string, agentAddr string) (opentracing.Tracer, io.Closer, error) {
 	cfg := config.Configuration{
 		ServiceName: traceName,
 		Sampler: &config.SamplerConfig{
